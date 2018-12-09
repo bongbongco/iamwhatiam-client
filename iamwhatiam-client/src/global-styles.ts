@@ -1,10 +1,9 @@
-import reset from "styled-components";
+import reset from "styled-reset";
 import { createGlobalStyle } from "./typed-components";
 
-// tslint:disable-next-line
-createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Maven+Pro');
-    ${reset};
+    ${reset}
 
     *{
         box-sizing: border-box;
@@ -22,3 +21,5 @@ createGlobalStyle`
         &:active{outline:none}
     }
 `;
+
+export default GlobalStyle;
