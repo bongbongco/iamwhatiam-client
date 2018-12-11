@@ -7,7 +7,8 @@ const client = new AplloClient({
                 __typename: "Auth",
                 isLoggedIn: Boolean(localStorage.getItem("jwt"))
             }
-        }, resolvers: {
+        }, 
+        resolvers: {
             Mutation: {
                 logUserIn: (
                     _,
