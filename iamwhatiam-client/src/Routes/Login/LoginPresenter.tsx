@@ -75,21 +75,21 @@ const LoginPresenter: React.SFC<IProps> = () => (
         </Helmet>
         <Header>
             <Logo>
-                <Title>IamwhatIam</Title>
+                <Title>iwi</Title>
             </Logo>
         </Header>
         <Footer>
             <Link to={"/phone-login"}>
                 <PhoneLogin>
-                    <Subtitle>Get moving with IamwhatIam</Subtitle>
+                    <Subtitle>나 다운 생각, 나답게 IWI</Subtitle>
                     <FakeInput>
-                         🇰🇷 +82 <Grey>Enter your mobile number</Grey>
+                         🇰🇷 +82 <Grey>휴대전화 번호를 입력해주세요</Grey>
                     </FakeInput>
                 </PhoneLogin>
             </Link>
-            <Link to={"social-login"}>
+            <Link to={"/social-login"}>
                 <SocialLogin>
-                    <SocialLink>Or connect with social</SocialLink> 
+                    <SocialLink>SNS 계정 활용해서 로그인하기</SocialLink> 
                 </SocialLogin>
             </Link>
         </Footer>

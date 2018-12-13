@@ -6,7 +6,6 @@ Redirect,
 Route,
 Switch
 } from "react-router-dom";
-
 import AddPlace from "../../Routes/AddPlace";
 import EditAccount from "../../Routes/EditAccount";
 import FindAddress from "../../Routes/FindAddress";
