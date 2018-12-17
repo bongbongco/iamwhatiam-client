@@ -25,6 +25,7 @@ class PhoneLoginContainer extends React.Component<
     }
 
     public render() {
+        const { history } = this.props;
         const {countryCode, phoneNumber} = this.state;
         return (
             <PhoneSignInMutation
@@ -48,8 +49,10 @@ class PhoneLoginContainer extends React.Component<
                             `${countryCode}${phoneNumber}`
                         );
                         if (isValid) {
-                            mutation();
-                            return;
+                            // mutation();
+                            history.push({
+                                pathname: "/verify-phone"
+                            });
                         } else {
                             toast.error("전화번호를 다시 확인해주세요");
                         }
