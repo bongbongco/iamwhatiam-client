@@ -2,21 +2,17 @@ import React from "react";
 import { Mutation } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
+import { startPhoneVerification, startPhoneVerificationVariables } from '../../types/api';
 import PhoneLoginPresenter from "./PhoneLoginPresenter";
 import { PHONE_SIGN_IN } from "./PhoneQueries.queries";
-
 
 interface IState {
     countryCode: string;
     phoneNumber: string;
 }
 
-interface IMutationInterface {
-    phoneNumber: string;
-}
-
-class PhoneSignInMutation extends Mutation<any, 
-    IMutationInterface
+class PhoneSignInMutation extends Mutation<startPhoneVerification, 
+    startPhoneVerificationVariables
 > {}
 
 class PhoneLoginContainer extends React.Component<
@@ -35,6 +31,14 @@ class PhoneLoginContainer extends React.Component<
                 mutation={PHONE_SIGN_IN}
                 variables={{
                     phoneNumber: `${countryCode}${phoneNumber}` 
+                }}
+                onCompleted={data => {
+                    const { StartPhoneVerification } = data;
+                    if(StartPhoneVerification.ok) {
+                        return;
+                    } else {
+                        toast.error(StartPhoneVerification.error);
+                    }
                 }}
             >
                 {(mutation, {loading}) => {
