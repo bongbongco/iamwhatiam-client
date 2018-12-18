@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import Button from "../../Components/Button";
 import Header from "../../Components/Header";
 import Input from "../../Components/Input";
+import routes from "../../routes";
 import styled from "../../typed-components";
 
 const Container = styled.div``;
@@ -15,12 +16,12 @@ const ExtendedInput = styled(Input)`
     margin-bottom: 20px;
 `;
 
-const VerifyPhonPresenter = () => (
+const VerifyPhonePresenter = () => (
     <Container>
         <Helmet>
             <title>Verify Phone | Number</title>
         </Helmet>
-        <Header backTo={"/phone-login"} title={"Verify Phone Number"} />
+        <Header backTo={routes.phoneLogin} title={"Verify Phone Number"} />
         <Form>
             <ExtendedInput
                 value={""}
@@ -32,4 +33,4 @@ const VerifyPhonPresenter = () => (
     </Container>
 );
 
-export default VerifyPhonPresenter;
+export default VerifyPhonePresenter;

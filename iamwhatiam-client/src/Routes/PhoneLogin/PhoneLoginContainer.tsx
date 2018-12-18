@@ -2,6 +2,7 @@ import React from "react";
 import { Mutation } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
+import routes from "../../routes";
 import { startPhoneVerification, startPhoneVerificationVariables } from '../../types/api';
 import PhoneLoginPresenter from "./PhoneLoginPresenter";
 import { PHONE_SIGN_IN } from "./PhoneQueries.queries";
@@ -45,13 +46,15 @@ class PhoneLoginContainer extends React.Component<
                 {(mutation, {loading}) => {
                     const onSubmit: React.FormEventHandler<HTMLFormElement> = event => {
                         event.preventDefault();
-                        const isValid = /^\+[1-9]{1}[0-9]{7,11}$/.test(
-                            `${countryCode}${phoneNumber}`
-                        );
+                        const phone = `${countryCode}${phoneNumber}`;
+                        const isValid = /^\+[1-9]{1}[0-9]{7,11}$/.test(phone);
                         if (isValid) {
                             // mutation();
                             history.push({
-                                pathname: "/verify-phone"
+                                pathname: routes.verifyPhone,
+                                state: {
+                                    phone
+                                }
                             });
                         } else {
                             toast.error("전화번호를 다시 확인해주세요");
@@ -65,7 +68,7 @@ class PhoneLoginContainer extends React.Component<
                             onSubmit={onSubmit}
                             loading={loading}
                         />
-                    )
+                    );
                 }}
             </PhoneSignInMutation>
         );

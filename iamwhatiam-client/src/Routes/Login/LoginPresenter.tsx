@@ -2,6 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import { Link, RouteComponentProps } from "react-router-dom";
 import bgImage from "../../images/bg.png";
+import routes from "../../routes";
 import styled from "../../typed-components";
 
 const Container = styled.div`
@@ -24,7 +25,6 @@ const Logo = styled.div`
     justify-content: center;
     align-items: center;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 -14px 28px rgba(0, 0, 0, 0.22);
-    text-transform: uppercase;
     font-weight: 500;
     font-size: 25px;
 `;
@@ -39,7 +39,7 @@ const Subtitle = styled.h2`
 
 const FakeInput = styled.div`
     margin: 50px 0px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 300;
 `;
 
@@ -75,19 +75,19 @@ const LoginPresenter: React.SFC<IProps> = () => (
         </Helmet>
         <Header>
             <Logo>
-                <Title>iwi</Title>
+                <Title>iWi</Title>
             </Logo>
         </Header>
         <Footer>
-            <Link to={"/phone-login"}>
+            <Link to={routes.phoneLogin}>
                 <PhoneLogin>
-                    <Subtitle>나 다운 생각, 나답게 IWI</Subtitle>
+                    <Subtitle>내 생각을 나 답게 = iWi</Subtitle>
                     <FakeInput>
                          🇰🇷 +82 <Grey>휴대전화 번호를 입력해주세요</Grey>
                     </FakeInput>
                 </PhoneLogin>
             </Link>
-            <Link to={"/social-login"}>
+            <Link to={routes.socialLogin}>
                 <SocialLogin>
                     <SocialLink>SNS 계정 활용해서 로그인하기</SocialLink> 
                 </SocialLogin>

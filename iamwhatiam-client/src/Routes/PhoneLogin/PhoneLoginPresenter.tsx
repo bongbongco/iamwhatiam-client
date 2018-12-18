@@ -3,6 +3,7 @@ import Helmet from "react-helmet";
 import BackArrow from "../../Components/BackArrow";
 import Input from "../../Components/Input";
 import countries from "../../countries";
+import routes from "../../routes";
 import styled from "../../typed-components";
 
 const Container = styled.div`
@@ -76,7 +77,7 @@ const PhoneLoginPresenter: React.SFC<IProps> = ({
         <Helmet>
             <title>Phone Login | IamwhatIam</title>
         </Helmet>
-        <BackArrowExtended backTo={"/"} />
+        <BackArrowExtended backTo={routes.login} />
         <Title>휴대전화 번호를 입력해주세요</Title>
         <CountrySelect value={countryCode} name={"countryCode"} onChange={onInputChange}>
             {countries.map((country, index) => (
