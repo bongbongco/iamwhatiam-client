@@ -1,6 +1,8 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { LOG_USER_IN } from "../../sharedQueries";
 import {
     verifyPhone,
     verifyPhoneVariables
@@ -9,7 +11,7 @@ import VerifyPhonePresenter from "./VerifyPhonePresenter";
 import { VERIFY_PHONE } from "./VerifyPhoneQueries";
 
 interface IState {
-    key: string;
+    verificationKey: string;
     phoneNumber: string;
 }
 
@@ -24,25 +26,54 @@ class VerifyPhoneContainer extends React.Component<IProps, IState> {
             props.history.push("/");
         }
         this.state = {
-            key: "",
-            phoneNumber: props.location.state.phone
+            phoneNumber: props.location.state.phone,
+            verificationKey: ""
         };
     }
 
     public render() {
-        const { key, phoneNumber } = this.state;
+        const { verificationKey, phoneNumber } = this.state;
         return (
-            <VerifyMutation
-                mutation={VERIFY_PHONE}
-                variables={{
-                    key,
-                    phoneNumber
-                }}
-            >
-                {(mutation, { loading }) => (
-                    <VerifyPhonePresenter onChange={this.onInputChange} key={key} />
+            <Mutation mutation={LOG_USER_IN}>
+                {logUserIn => (
+                    <VerifyMutation
+                        mutation={VERIFY_PHONE}
+                        variables={{
+                            key: verificationKey,
+                            phoneNumber
+                        }}
+                        onCompleted={data => {
+                            const { CompletePhoneVerification } = data;
+                            if (CompletePhoneVerification.ok) {
+                                if (CompletePhoneVerification.token) {
+                                    logUserIn({
+                                        variables: {
+                                            token: CompletePhoneVerification.token
+                                        }
+                                    });
+                                }
+                                toast.success("인증되었습니다");
+                            } else {
+                                    if (CompletePhoneVerification.error === "Verification key not valid ") {
+                                        toast.error("인증번호를 다시 확인해주세요");
+                                    } else {
+                                        toast.error(CompletePhoneVerification.error);
+                                    }
+                            }
+                        }}
+                    >
+                        {(mutation, { loading }) => (
+                            <VerifyPhonePresenter 
+                                onSubmit={mutation}
+                                onChange={this.onInputChange} 
+                                verificationKey={verificationKey} 
+                                loading={loading}
+                            />
+                        )}
+                    </VerifyMutation>
                 )}
-            </VerifyMutation>
+            </Mutation>
+            
         );
     }
 

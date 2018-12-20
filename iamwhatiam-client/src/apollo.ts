@@ -34,8 +34,10 @@ const client = new AplloClient({
                     localStorage.removeItem("jwt");
                     cache.writeData({
                         data: {
-                            __typename: "Auth",
-                            isLoggedIn: false
+                            auth: {
+                                __typename: "Auth",
+                                isLoggedIn: false
+                            }
                         }
                     });
                     return null;

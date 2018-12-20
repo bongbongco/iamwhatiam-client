@@ -75,7 +75,7 @@ const PhoneLoginPresenter: React.SFC<IProps> = ({
 }) => (
     <Container>
         <Helmet>
-            <title>Phone Login | IamwhatIam</title>
+            <title>휴대전화 로그인 | iamWhatiam</title>
         </Helmet>
         <BackArrowExtended backTo={routes.login} />
         <Title>휴대전화 번호를 입력해주세요</Title>
