@@ -1,5 +1,5 @@
 import React from "react";
-import { Mutation } from "react-apollo";
+import { Mutation, MutationFn } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
 import { toast } from "react-toastify";
 import routes from "../../routes";
@@ -23,6 +23,7 @@ class PhoneLoginContainer extends React.Component<
     RouteComponentProps<any>,
     IState
 > {
+    public phoneMutation: MutationFn;
     public state = {
         countryCode: "+82",
         phoneNumber: ""
@@ -55,23 +56,14 @@ class PhoneLoginContainer extends React.Component<
                     }
                 }}
             >
-                {(mutation, {loading}) => {
-                    const onSubmit: React.FormEventHandler<HTMLFormElement> = event => {
-                        event.preventDefault();
-                        
-                        const isValid = /^\+[1-9]{1}[0-9]{7,11}$/.test(phone);
-                        if (isValid) {
-                            mutation();
-                        } else {
-                            toast.error("전화번호를 다시 확인해주세요");
-                        }
-                    }
+                {(phoneMutation, {loading}) => {
+                    this.phoneMutation = phoneMutation;
                     return (
                         <PhoneLoginPresenter 
                             countryCode={countryCode} 
                             phoneNumber={phoneNumber} 
                             onInputChange={this.onInputChange}
-                            onSubmit={onSubmit}
+                            onSubmit={this.onSubmit}
                             loading={loading}
                         />
                     );
@@ -89,6 +81,19 @@ class PhoneLoginContainer extends React.Component<
         this.setState({
             [name]: value
         } as any);
+    }
+
+    public onSubmit: React.FormEventHandler<HTMLFormElement> = event => {
+        event.preventDefault();
+        const { countryCode, phoneNumber } = this.state;
+        const phone = this.mergeCountryCodePhoneNumber(countryCode, phoneNumber);
+                        
+        const isValid = /^\+[1-9]{1}[0-9]{7,11}$/.test(phone);
+        if (isValid) {
+            this.phoneMutation();
+        } else {
+            toast.error("전화번호를 다시 확인해주세요 😔");
+        }
     }
 
     public mergeCountryCodePhoneNumber(countryCode, phoneNumber) {

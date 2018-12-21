@@ -1,6 +1,7 @@
 import React from "react";
-import { Mutation } from "react-apollo";
-import { RouteComponentProps } from 'react-router';
+import { Mutation, MutationFn } from "react-apollo";
+import { RouteComponentProps } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { 
     facebookConnect,
     facebookConnectVariables
@@ -23,12 +24,40 @@ interface IState {
 interface IProps extends RouteComponentProps<any> {}
 
 class SocialLoginContainer extends React.Component<IProps, IState> {
+    public state= {
+        email : "",
+        fbId : "",
+        firstName : "",
+        lastName : ""
+    };
+
+    public facebookMutation: MutationFn;
     public render() {
         return (
-            <LoginMutation mutation={FACEBOOK_CONNECT}>
-                <SocialLoginPresenter />
+            <LoginMutation mutation={FACEBOOK_CONNECT} >
+                {(facebookMutation, {loading}) => {
+                    this.facebookMutation = facebookMutation;
+                    return <SocialLoginPresenter loginCallback={this.loginCallback}/>;
+                }}
             </LoginMutation>
         );
+    }
+
+    public loginCallback = response => {
+        const { name, first_name, last_name, email, id, accessToken } = response;
+        if (accessToken) {
+            toast.success(`${name}님 환영합니다 😄`);
+            this.facebookMutation({
+                variables: {
+                    email,
+                    fbId: id,
+                    firstName: first_name,
+                    lastName: last_name
+                }
+            });
+        } else {
+            toast.error("로그인에 실패하였습니다 😔");
+        }
     }
 }
 

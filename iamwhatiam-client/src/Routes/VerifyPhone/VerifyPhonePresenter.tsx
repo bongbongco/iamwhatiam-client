@@ -33,7 +33,7 @@ const VerifyPhonePresenter: React.SFC<IProps> = ({
 }) => (
     <Container>
         <Helmet>
-            <title>Verify Phone | Number</title>
+            <title>휴대전화 번호 인증 | iamWhatiam</title>
         </Helmet>
         <Header backTo={routes.phoneLogin} title={"Verify Phone Number"} />
         <ExtendedForm
