@@ -21,7 +21,7 @@ class MenuContainer extends React.Component {
                         if (ToggleDrivingMode.ok) {
                             toast.success("상태가 변경되었습니다");
                         }
-                        if (ToggleDrivingMode.error) {
+                        else if (ToggleDrivingMode.error) {
                             toast.error(ToggleDrivingMode.error);
                             return;
                         }

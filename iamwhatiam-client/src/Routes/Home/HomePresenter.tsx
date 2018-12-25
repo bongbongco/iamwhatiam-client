@@ -19,7 +19,7 @@ const HomePresenter: React.SFC<IProps> = ({
 }) => (
     <Container>
         <Helmet>
-            <title>Home | iamWhatiam</title> 
+            <title>나는 나 - iWi | iamWhatiam</title> 
         </Helmet> 
         <Sidebar
             sidebar={<Menu />}
