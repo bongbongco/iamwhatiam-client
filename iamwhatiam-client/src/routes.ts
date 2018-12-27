@@ -9,5 +9,6 @@ export default {
     ride:"/ride",
     settings:"/settings",
     socialLogin:"/social-login",
-    verifyPhone:"/verify-phone"
+    trip:"/trip",
+    verifyPhone:"/verify-phone",
 };

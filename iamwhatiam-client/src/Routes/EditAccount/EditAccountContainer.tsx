@@ -1,7 +1,9 @@
+import axios from "axios";
 import React from "react";
 import { Mutation, Query } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
 import { toast } from 'react-toastify';
+import keys from "../../keys";
 import { USER_PROFILE } from "../../sharedQueries";
 import { 
     updateProfile, 
@@ -16,6 +18,7 @@ interface IState {
     lastName: string;
     email: string;
     profilePhoto: string;
+    uploading: boolean;
 }
 
 interface IProps extends RouteComponentProps<any> {}
@@ -32,13 +35,17 @@ class EditAccountContainer extends React.Component<IProps, IState> {
         email: "",
         firstName: "",
         lastName: "",
-        profilePhoto: ""
+        profilePhoto: "",
+        uploading: false
     };
 
     public render() {
-        const { email, firstName, lastName, profilePhoto } = this.state;
+        const { email, firstName, lastName, profilePhoto, uploading } = this.state;
         return (
-            <ProfileQuery query={USER_PROFILE} onCompleted={this.updateFields}>
+            <ProfileQuery 
+                query={USER_PROFILE} 
+                fetchPolicy={"cache-and-network"}
+                onCompleted={this.updateFields}>
                 {() => (
                     <UpdateProfileMutation
                         mutation={UPDATE_PROFILE}
@@ -67,6 +74,7 @@ class EditAccountContainer extends React.Component<IProps, IState> {
                                 onInputChange={this.onInputChange}
                                 loading={loading}
                                 onSubmit={updateProfileFn}
+                                uploading={uploading}
                             />
                         )} 
                     </UpdateProfileMutation>
@@ -75,10 +83,35 @@ class EditAccountContainer extends React.Component<IProps, IState> {
         );
     }
 
-    public onInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
+    public onInputChange: React.ChangeEventHandler<
+        HTMLInputElement
+    > = async event => {
         const {
-            target: { name, value }
+            target: { name, value, files }
         } = event;
+
+        if (files) {
+            this.setState({
+                uploading: true
+            });
+            const formData = new FormData();
+            formData.append("file", files[0]);
+            formData.append("api_key", keys.api_key);
+            formData.append("upload_preset", keys.upload_preset);
+            formData.append("timestamp", String(Date.now() / 1000));
+            const {
+                data: { secure_url }
+            } = await axios.post(
+                keys.upload_request,
+                formData
+            );
+            if (secure_url) {
+                this.setState({
+                    profilePhoto: secure_url,
+                    uploading: false
+                });
+            }
+        }
 
         this.setState({
             [name]: value
@@ -87,17 +120,18 @@ class EditAccountContainer extends React.Component<IProps, IState> {
 
     public updateFields = (data: {} | userProfile) => {
         if ("GetMyProfile" in data) {
+            console.log(data);
             const {
                 GetMyProfile: { user }
             } = data;
             if (user !== null) {
                 const { firstName, lastName, email, profilePhoto } = user;
-                console.log(firstName);
                 this.setState({
                     email,
                     firstName,
                     lastName,
-                    profilePhoto
+                    profilePhoto,
+                    uploaded: profilePhoto !== null
                 } as any);
             }
         }

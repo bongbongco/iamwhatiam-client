@@ -1,6 +1,7 @@
 import React from "react";
 import { MutationFn } from 'react-apollo';
 import { Link } from "react-router-dom";
+import routes from "../../routes";
 import styled from "../../typed-components";
 import { userProfile } from "../../types/api";
 
@@ -104,13 +105,13 @@ const MenuPresenter: React.SFC<IProps> = ({
                             />
                         </Link>
                         <Text>
-                              <Name>이승용</Name>
+                              <Name>{user.fullName}</Name>
                               <Rating>4.5</Rating>
                         </Text>
                     </Grid>
                 </Header>
-                <SLink to="/trip">Your Trips</SLink>
-                <SLink to="settings">Settings</SLink>
+                <SLink to={routes.trip}>나의 여정</SLink>
+                <SLink to={routes.settings}>설정</SLink>
                 <ToggleDriving onClick={toggleDrivingFn} isDriving={user.isDriving}>
                     {user.isDriving ? "Stop driving" : "Start driving"}
                 </ToggleDriving>
