@@ -1,5 +1,3 @@
-import React from "react";
+import SettingContainer from "./SettingsContainer";
 
-const R = () => <span>lala</span>;
-
-export default R;
+export default SettingContainer;

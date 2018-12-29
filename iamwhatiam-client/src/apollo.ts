@@ -52,7 +52,7 @@ const client = new AplloClient({
             }
         });
     },
-    uri: "http://localhost:4000/graphql"
+    uri: "http://192.168.0.14:4000/graphql"
 });
 
 export default client;
