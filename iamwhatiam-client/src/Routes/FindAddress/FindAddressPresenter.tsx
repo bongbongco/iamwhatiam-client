@@ -6,8 +6,8 @@ const Map = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%:
-    width: 100%:
+    height: 100%;
+    width: 100%;
     z-index:1;
 `;
 
@@ -31,7 +31,6 @@ interface IProps {
 class FindAddressPresenter extends React.Component<IProps> {
     public render() {
         const { mapRef } = this.props;
-        console.log(this.props);
         return (
             <div>
                 <Helmet>
