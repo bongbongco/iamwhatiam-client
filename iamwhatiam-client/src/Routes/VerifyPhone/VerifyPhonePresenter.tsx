@@ -47,7 +47,7 @@ const VerifyPhonePresenter: React.SFC<IProps> = ({
             />
             <Button 
                 disabled={loading} 
-                value={loading ? "Verifying" : "Submit"} 
+                value={loading ? "인증 중" : "인증하기"} 
                 onClick={null} 
             />
         </ExtendedForm>

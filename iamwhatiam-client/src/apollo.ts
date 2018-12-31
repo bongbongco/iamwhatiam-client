@@ -1,4 +1,5 @@
 import AplloClient, {Operation} from "apollo-boost";
+import routes from "./routes";
 
 const client = new AplloClient({
     clientState: {
@@ -52,7 +53,7 @@ const client = new AplloClient({
             }
         });
     },
-    uri: "http://192.168.0.14:4000/graphql"
+    uri: routes.graphql
 });
 
 export default client;

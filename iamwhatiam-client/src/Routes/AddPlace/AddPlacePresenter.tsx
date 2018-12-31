@@ -29,6 +29,7 @@ interface IProps {
     onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     loading: boolean;
     onSubmit: MutationFn;
+    pickedAddress: boolean;
 }
 
 const AddPlacePresenter: React.SFC<IProps> = ({
@@ -36,7 +37,8 @@ const AddPlacePresenter: React.SFC<IProps> = ({
     address,
     name,
     loading,
-    onSubmit
+    onSubmit,
+    pickedAddress
 }) => (
     <React.Fragment>
         <Helmet>
@@ -60,7 +62,12 @@ const AddPlacePresenter: React.SFC<IProps> = ({
                     name={"address"}
                 />
                 <ExtendedLink to={routes.findAddress}>지도에서 찾기</ExtendedLink>
-                <Button onClick={null} value={loading ? "공간 추가 중" : "공간 추가하기"} />
+                {pickedAddress && (
+                    <Button 
+                        onClick={null} 
+                        value={loading ? "공간 추가 중" : "공간 추가하기"} 
+                    />
+                )}
             </Form>
         </Container>
     </React.Fragment>

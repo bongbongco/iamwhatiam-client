@@ -96,7 +96,7 @@ class EditAccountContainer extends React.Component<IProps, IState> {
             });
             const formData = new FormData();
             formData.append("file", files[0]);
-            formData.append("api_key", keys.api_key);
+            formData.append("api_key", keys.cloudinary_api_key);
             formData.append("upload_preset", keys.upload_preset);
             formData.append("timestamp", String(Date.now() / 1000));
             const {

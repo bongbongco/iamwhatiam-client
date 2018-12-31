@@ -2,6 +2,7 @@ export default {
     addPlace:"/add-place",
     editAccount:"/edit-account",
     findAddress:"/find-address",
+    graphql:"http://192.168.0.14:4000/graphql",
     home:"/",
     login:"/",
     phoneLogin:"/phone-login",
