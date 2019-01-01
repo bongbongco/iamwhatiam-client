@@ -90,7 +90,7 @@ const SettingsPresenter: React.SFC<IProps> = ({
                     address={place!.address}
                 />
             ))}
-            <SLink to={routes.places}>공간 목록으로 이동</SLink>
+            <SLink to={routes.places}>장소 목록으로 이동</SLink>
             <FakeLink onClick={logUserOut as any}>로그아웃</FakeLink>
         </Container>
     </React.Fragment>

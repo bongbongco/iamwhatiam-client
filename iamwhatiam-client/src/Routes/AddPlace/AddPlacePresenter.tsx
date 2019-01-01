@@ -42,13 +42,13 @@ const AddPlacePresenter: React.SFC<IProps> = ({
 }) => (
     <React.Fragment>
         <Helmet>
-            <title>공간 추가하기 | iamWhatiam</title>
+            <title>장소 추가하기 | iamWhatiam</title>
         </Helmet>
-        <Header title={"공간 추가하기"} backTo={"/"} />
+        <Header title={"장소 추가하기"} backTo={"/"} />
         <Container>
             <Form submitFn={onSubmit}>
                 <ExtendedInput
-                    placeholder={"공간 이름"} 
+                    placeholder={"이름"} 
                     type={"text"}
                     onChange={onInputChange}
                     value={name}
@@ -65,7 +65,7 @@ const AddPlacePresenter: React.SFC<IProps> = ({
                 {pickedAddress && (
                     <Button 
                         onClick={null} 
-                        value={loading ? "공간 추가 중" : "공간 추가하기"} 
+                        value={loading ? "위치 추가 중" : "추가하기"} 
                     />
                 )}
             </Form>

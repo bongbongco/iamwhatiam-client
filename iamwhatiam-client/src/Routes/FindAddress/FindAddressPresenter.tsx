@@ -1,5 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
+import AddressBar from "../../Components/AddressBar";
+import Button from "../../Components/Button";
 import styled from "../../typed-components";
 
 const Map = styled.div`
@@ -24,18 +26,46 @@ const Center = styled.div`
     bottom: 0;
 `;
 
+const ExtendedButton = styled(Button)`
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10;
+    height: auto;
+    width: 80%;
+`;
+
 interface IProps {
     mapRef: any;
+    address: string;
+    onInputBlur: () => void;
+    onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onPickPlace: () => void;
 }
 
 class FindAddressPresenter extends React.Component<IProps> {
     public render() {
-        const { mapRef } = this.props;
+        const { 
+            mapRef,
+            address,
+            onInputChange,
+            onInputBlur,
+            onPickPlace
+        } = this.props;
         return (
             <div>
                 <Helmet>
                     <title>주소 찾기 | iamWhatiam</title>
                 </Helmet>
+                <AddressBar
+                    onBlur={onInputBlur}
+                    onChange={onInputChange}
+                    name={"address"}
+                    value={address}
+                />
+                <ExtendedButton value={"위치 불러오기"} onClick={onPickPlace} />
                 <Center>📍</Center>
                 <Map ref={mapRef} />
             </div>

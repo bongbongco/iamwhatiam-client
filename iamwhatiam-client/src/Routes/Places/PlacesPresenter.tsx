@@ -26,14 +26,14 @@ const PlacesPresenter: React.SFC<IProps> = ({
 }) => (
     <React.Fragment>
         <Helmet>
-            <title>공간 목록 | iamWhatiam</title>
+            <title>장소 목록 | iamWhatiam</title>
         </Helmet>
-        <Header title={"공간 목록"} backTo={"/"} />
+        <Header title={"장소 목록"} backTo={"/"} />
         <Container>
             {!loading &&
             places &&
             places.length === 0 && 
-            "추가된 공간이 없습니다. "
+            "추가된 장소가 없습니다. "
             }
             {!loading &&
             places &&
@@ -46,7 +46,7 @@ const PlacesPresenter: React.SFC<IProps> = ({
                     address={place!.address}
                 />
             ))} 
-                <SLink to={routes.addPlace}>공간 추가하기</SLink>
+                <SLink to={routes.addPlace}>장소 추가하기</SLink>
         </Container>
     </React.Fragment>
 );
