@@ -110,6 +110,7 @@ const MenuPresenter: React.SFC<IProps> = ({
                         </Text>
                     </Grid>
                 </Header>
+                <SLink to={routes.havruta}>만나서 토론하기</SLink>
                 <SLink to={routes.trip}>나의 여정</SLink>
                 <SLink to={routes.settings}>설정</SLink>
                 <ToggleDriving onClick={toggleDrivingFn} isDriving={user.isDriving}>

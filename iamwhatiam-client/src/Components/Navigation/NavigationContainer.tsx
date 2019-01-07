@@ -1,9 +1,11 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { RouteComponentProps } from "react-router-dom";
-import { GET_PLACES } from "../../sharedQueries";
-import { getPlaces } from "../../types/api";
-import HomePresenter from "./HomePresenter";
+import { USER_PROFILE } from "../../sharedQueries";
+import {
+    userProfile 
+} from "../../types/api";
+import NavigationPresenter from "./NavigationPresenter";
 
 interface IState {
     isMenuOpen: boolean;
@@ -11,25 +13,25 @@ interface IState {
 
 interface IProps extends RouteComponentProps<any> {}
 
-class PlacesQuery extends Query<getPlaces> {}
+class ProfileQuery extends Query<userProfile> {}
 
-class HomeContainer extends React.Component<IProps, IState> {
+class NavigationContainer extends React.Component<IProps, IState> {
     public state = {
         isMenuOpen: false
     }
     public render() {
         const { isMenuOpen } = this.state;
         return (
-            <PlacesQuery query={GET_PLACES}>
+            <ProfileQuery query={USER_PROFILE}>
                 {({ data, loading }) => (
-                    <HomePresenter 
+                    <NavigationPresenter 
                         data={data} 
                         loading={loading} 
                         isMenuOpen={isMenuOpen}
                         toggleMenu={this.toggleMenu}
                     />
                 )} 
-            </PlacesQuery>
+            </ProfileQuery>
         );
     }
     public toggleMenu = () => {
@@ -41,4 +43,4 @@ class HomeContainer extends React.Component<IProps, IState> {
     }
 }
 
-export default HomeContainer;
+export default NavigationContainer;

@@ -10,6 +10,7 @@ import routes from "../../routes";
 import AddPlace from "../../Routes/AddPlace";
 import EditAccount from "../../Routes/EditAccount";
 import FindAddress from "../../Routes/FindAddress";
+import Havruta from "../../Routes/Havruta";
 import Home from "../../Routes/Home";
 import Login from "../../Routes/Login";
 import PhoneLogin from "../../Routes/PhoneLogin";
@@ -42,6 +43,7 @@ const LoggedOutRoutes: React.SFC = () => (
 const LoggedInRoutes: React.SFC = () => (
 <Switch>
 <Route path={routes.home} exact={true} component={Home} />
+<Route path={routes.havruta} exact={true} component={Havruta} />
 <Route path={routes.ride} exact={true} component={Ride} />
 <Route path={routes.editAccount} exact={true} component={EditAccount} />
 <Route path={routes.settings} exact={true} component={Settings} />

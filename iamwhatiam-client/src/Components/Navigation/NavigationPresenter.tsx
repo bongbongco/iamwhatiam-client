@@ -1,18 +1,12 @@
 import React from "react";
-import Helmet from "react-helmet";
 import Sidebar from "react-sidebar";
 import Menu from "../../Components/Menu";
-import Topics from "../../Components/Topics";
 import styled from "../../typed-components";
-import { 
-    getPlaces,
-} from "../../types/api";
+import { userProfile } from '../../types/api';
 
 const Container = styled.div`
-`;
-
-const Content = styled.div`
-    padding: 10px 20px;
+    width: 100%;
+    display: flex;
 `;
 
 const MenuButton = styled.button`
@@ -32,22 +26,19 @@ const MenuButton = styled.button`
 `;
 
 interface IProps {
+    data?: userProfile;
     isMenuOpen: boolean;
     toggleMenu: () => void;
-    data?: getPlaces;
     loading: boolean;
 }
 
-const HomePresenter: React.SFC<IProps> = ({
-    data: { GetMyPlaces: { places = null } = {} } = {},
+const NavigationPresenter: React.SFC<IProps> = ({
+    data: { GetMyProfile: { user = null } = {} } = {},
     isMenuOpen, 
     toggleMenu,
     loading,
 }) => (
     <Container>
-        <Helmet>
-            <title>주제 목록 | iamWhatiam</title>
-        </Helmet>
         <Sidebar
             sidebar={<Menu />}
             open={isMenuOpen}
@@ -62,10 +53,10 @@ const HomePresenter: React.SFC<IProps> = ({
         >
             {!loading && <MenuButton onClick={toggleMenu}>|||</MenuButton>}
         </Sidebar>
-        <Content>
-            <Topics />
-        </Content>
+        <span>test</span>
+        <span>test</span>
+        <span>test</span>
     </Container>
 );
 
-export default HomePresenter;
+export default NavigationPresenter;

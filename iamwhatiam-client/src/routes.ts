@@ -3,6 +3,7 @@ export default {
     editAccount:"/edit-account",
     findAddress:"/find-address",
     graphql:"http://192.168.0.14:4000/graphql",
+    havruta:"/havruta",
     home:"/",
     login:"/",
     phoneLogin:"/phone-login",
