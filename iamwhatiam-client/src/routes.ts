@@ -11,6 +11,7 @@ export default {
     ride:"/ride",
     settings:"/settings",
     socialLogin:"/social-login",
+    topic:"/topic",
     trip:"/trip",
     verifyPhone:"/verify-phone",
 };

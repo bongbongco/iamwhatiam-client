@@ -1,7 +1,10 @@
 import React from "react";
 import { MutationFn } from "react-apollo";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Form from "../../Components/Form";
+import Input from "../../Components/Input";
 import bgImage from "../../images/bg.png";
+import routes from "../../routes";
 import styled from "../../typed-components";
 import TopicComments from '../TopicComments';
 
@@ -52,12 +55,15 @@ const Body = styled.div`
     align-items: center;
 `;
 
+const SLink = styled(Link)`
+    cursor: pointer;
+`;
+
 const Meta = styled.div`
     padding: 15px;
     padding-bottom: 0;
     padding-top: 10px;
 `;
-
 
 const TopicColumn = styled.div`
     display: flex;
@@ -70,7 +76,7 @@ const TopicPhoto = styled.img`
     margin-right: 15px;
 `;
 
-const Name = styled.span`
+const Subject = styled.span`
     display: block;
 `;
 
@@ -78,9 +84,13 @@ const Icon = styled.span`
     cursor: pointer;
 `;
 
-const Address = styled.span`
+const Content = styled.span`
     color: ${props => props.theme.greyColor};
     font-size: 14px;
+`;
+
+const CommentInput = styled(Input)`
+    margin-bottom: 40px;
 `;
 
 const Likes = styled.span`
@@ -91,13 +101,17 @@ const Likes = styled.span`
 interface IProps {
     fav: boolean;
     name: string;
+    onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     address: string;
     onStarPress: MutationFn;
+    onSubmit: MutationFn;
 }
 
 const TopicPresenter: React.SFC<IProps> = ({ 
     onStarPress,
     fav, 
+    onInputChange,
+    onSubmit,
     name, 
     address }) => (
         <Container>
@@ -111,16 +125,21 @@ const TopicPresenter: React.SFC<IProps> = ({
                 </HeaderColumn>
             </Header>
             <Meta>
-                <Body>
-                    <TopicColumn>
-                        <Name>{name}</Name>
-                        <Address>{address}</Address>
-                    </TopicColumn>
+                <SLink to={routes.topic}>
+                    <Body>
+                        <TopicColumn>
+                            <Subject>{name}</Subject>
+                            <Content>{address}</Content>
+                        </TopicColumn>
                         <TopicPhoto src={bgImage} />
-                </Body>
+                    </Body>
+                </SLink>
                 <TopicComments />
-                 <Icon onClick={onStarPress as any}>{fav ? "★" : "☆"}</Icon>
-                     <Likes>15</Likes>
+                <Icon onClick={onStarPress as any}>{fav ? "★" : "☆"}</Icon>
+                <Likes>15</Likes>
+                <Form>
+                    <CommentInput />
+                </Form> 
             </Meta>
         </Container>
 );
