@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
-import Place from "../../Components/Place";
+import Topic from "../../Components/Topic";
 import routes from "../../routes";
 import styled from "../../typed-components";
 import { getPlaces } from "../../types/api";
@@ -36,7 +36,7 @@ const TopicsPresenter: React.SFC<IProps> = ({
             {!loading &&
             places &&
             places.map(place => (
-                <Place
+                <Topic
                     key={place!.id}
                     id={place!.id}
                     fav={place!.isFav}
