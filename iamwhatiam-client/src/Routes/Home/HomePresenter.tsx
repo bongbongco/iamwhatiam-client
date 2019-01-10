@@ -12,7 +12,14 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-    padding: 10px 20px;
+    padding: 10px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 935px;
+    margin: 0 auto;
+    align-items: center;
 `;
 
 const MenuButton = styled.button`

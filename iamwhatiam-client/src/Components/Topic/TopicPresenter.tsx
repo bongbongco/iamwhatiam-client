@@ -1,7 +1,8 @@
 import React from "react";
 import { MutationFn } from "react-apollo";
 import { Link } from "react-router-dom";
-import Form from "../../Components/Form";
+// import Button from "../../Components/Button";
+// import Form from "../../Components/Form";
 import Input from "../../Components/Input";
 import bgImage from "../../images/bg.png";
 import routes from "../../routes";
@@ -101,19 +102,24 @@ const Likes = styled.span`
 interface IProps {
     fav: boolean;
     name: string;
-    onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    // comment: string;
+    // loading: boolean;
+    // onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     address: string;
     onStarPress: MutationFn;
-    onSubmit: MutationFn;
+    // onSubmit: MutationFn;
 }
 
 const TopicPresenter: React.SFC<IProps> = ({ 
     onStarPress,
     fav, 
-    onInputChange,
-    onSubmit,
+    // onInputChange,
+    // onSubmit,
+    // loading,
     name, 
-    address }) => (
+    address,
+    // comment
+ }) => (
         <Container>
             <Header>
                 <CreatorPhoto src={
@@ -137,9 +143,7 @@ const TopicPresenter: React.SFC<IProps> = ({
                 <TopicComments />
                 <Icon onClick={onStarPress as any}>{fav ? "★" : "☆"}</Icon>
                 <Likes>15</Likes>
-                <Form>
-                    <CommentInput />
-                </Form> 
+                <CommentInput />
             </Meta>
         </Container>
 );

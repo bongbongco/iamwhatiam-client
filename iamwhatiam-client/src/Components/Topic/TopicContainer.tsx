@@ -12,10 +12,17 @@ interface IProps {
     address: string;
     id: number;
 }
-
+/*
+interface IState {
+    comment: string;
+}
+*/
 class FavMutation extends Mutation<editPlace, editPlaceVariables> {}
 
 class TopicContainer extends React.Component<IProps> {
+    public state = {
+        comment: ""
+    };
     public render() {
         const { id, fav, name, address } = this.props;
         return  (
