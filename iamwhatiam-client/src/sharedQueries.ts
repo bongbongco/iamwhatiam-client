@@ -31,3 +31,19 @@ export const GET_PLACES = gql`
         }
     }
 `;
+
+
+export const GET_TOPICS = gql`
+    query getTopics {
+        GetMyTopics {
+            ok
+            error
+            topics {
+                id
+                subject
+                content
+                isFav
+            }
+        }
+    }
+`;

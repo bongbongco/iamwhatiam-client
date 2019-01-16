@@ -41,6 +41,30 @@ export interface editPlaceVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: editTopic
+// ====================================================
+
+export interface editTopic_EditTopic {
+  __typename: "EditTopicResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface editTopic {
+  EditTopic: editTopic_EditTopic;
+}
+
+export interface editTopicVariables {
+  topicId: number;
+  isFav?: boolean | null;
+  subject?: string | null;
+  content?: string | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: addPlace
 // ====================================================
 
@@ -59,6 +83,29 @@ export interface addPlaceVariables {
   lat: number;
   lng: number;
   address: string;
+  isFav: boolean;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: addTopic
+// ====================================================
+
+export interface addTopic_AddTopic {
+  __typename: "AddTopicResponse";
+  ok: boolean;
+  error: string | null;
+}
+
+export interface addTopic {
+  AddTopic: addTopic_AddTopic;
+}
+
+export interface addTopicVariables {
+  subject: string;
+  content: string;
   isFav: boolean;
 }
 
@@ -252,6 +299,32 @@ export interface getPlaces_GetMyPlaces {
 
 export interface getPlaces {
   GetMyPlaces: getPlaces_GetMyPlaces;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: getTopics
+// ====================================================
+
+export interface getTopics_GetMyTopics_topics {
+  __typename: "Topic";
+  id: number;
+  subject: string;
+  content: string;
+  isFav: boolean;
+}
+
+export interface getTopics_GetMyTopics {
+  __typename: "GetMyTopicsResponse";
+  ok: boolean;
+  error: string | null;
+  topics: (getTopics_GetMyTopics_topics | null)[] | null;
+}
+
+export interface getTopics {
+  GetMyTopics: getTopics_GetMyTopics;
 }
 
 /* tslint:disable */

@@ -16,7 +16,7 @@ const Container = styled.div`
     margin-left: 10px;
     width: 100%;
     max-width: 600;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     &:last-child {
         margin-bottom: 0;
     }
@@ -74,6 +74,7 @@ const TopicColumn = styled.div`
 const TopicPhoto = styled.img`
     width: 60px;
     height: 60px;
+    margin-left: 5px;
     margin-right: 15px;
 `;
 
@@ -101,11 +102,11 @@ const Likes = styled.span`
 
 interface IProps {
     fav: boolean;
-    name: string;
+    subject: string;
+    content: string;
     // comment: string;
     // loading: boolean;
     // onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    address: string;
     onStarPress: MutationFn;
     // onSubmit: MutationFn;
 }
@@ -116,8 +117,8 @@ const TopicPresenter: React.SFC<IProps> = ({
     // onInputChange,
     // onSubmit,
     // loading,
-    name, 
-    address,
+    subject, 
+    content
     // comment
  }) => (
         <Container>
@@ -134,8 +135,8 @@ const TopicPresenter: React.SFC<IProps> = ({
                 <SLink to={routes.topic}>
                     <Body>
                         <TopicColumn>
-                            <Subject>{name}</Subject>
-                            <Content>{address}</Content>
+                            <Subject>{subject}</Subject>
+                            <Content>{content}</Content>
                         </TopicColumn>
                         <TopicPhoto src={bgImage} />
                     </Body>

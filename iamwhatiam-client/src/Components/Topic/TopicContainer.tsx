@@ -1,15 +1,15 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { toast } from 'react-toastify';
-import { GET_PLACES } from "../../sharedQueries";
-import { editPlace, editPlaceVariables, getPlaces } from "../../types/api";
+import { GET_TOPICS } from "../../sharedQueries";
+import { editTopic, editTopicVariables, getTopics } from "../../types/api";
 import TopicPresenter from "./TopicPresenter";
-import { EDIT_PLACE } from "./TopicQueries";
+import { EDIT_TOPIC } from "./TopicQueries";
 
 interface IProps {
     fav: boolean;
-    name: string;
-    address: string;
+    subject: string;
+    content: string;
     id: number;
 }
 /*
@@ -17,47 +17,49 @@ interface IState {
     comment: string;
 }
 */
-class FavMutation extends Mutation<editPlace, editPlaceVariables> {}
+class EditTopicMutation extends Mutation<editTopic, editTopicVariables> {}
 
 class TopicContainer extends React.Component<IProps> {
     public state = {
         comment: ""
     };
     public render() {
-        const { id, fav, name, address } = this.props;
+        const { id, fav, subject, content } = this.props;
         return  (
-            <FavMutation
-                mutation={EDIT_PLACE}
+            <EditTopicMutation
+                mutation={EDIT_TOPIC}
                 variables={{
+                    content,
                     isFav: !fav,
-                    placeId: id
+                    subject,
+                    topicId: id
                 }}
                 update={(cache, {data}) => {
                     if (data) {
-                        const { EditPlace } = data;
-                        if (EditPlace.ok) {
+                        const { EditTopic } = data;
+                        if (EditTopic.ok) {
                             toast.success("설정이 변경되었습니다");
-                        } else if (EditPlace.error) {
-                            toast.error(EditPlace.error);
+                        } else if (EditTopic.error) {
+                            toast.error(EditTopic.error);
                             return;
                         }
                     }
-                    const query: getPlaces | null = cache.readQuery({
-                        query: GET_PLACES
+                    const query: getTopics | null = cache.readQuery({
+                        query: GET_TOPICS
                     });
-                    cache.writeQuery({ query: GET_PLACES, data: query });
+                    cache.writeQuery({ query: GET_TOPICS, data: query });
                 }} 
-                refetchQueries={[{ query: GET_PLACES }]}
+                refetchQueries={[{ query: GET_TOPICS }]}
             >
-                {editPlaceFn => (
+                {editTopicFn => (
                     <TopicPresenter
-                        onStarPress={editPlaceFn}
+                        onStarPress={editTopicFn}
                         fav={fav}
-                        name={name}
-                        address={address}
+                        subject={subject}
+                        content={content}
                     />
                 )}
-            </FavMutation>
+            </EditTopicMutation>
         );
     }
 }

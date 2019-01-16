@@ -1,5 +1,6 @@
 export default {
     addPlace:"/add-place",
+    addTopic:"/add-topic",
     editAccount:"/edit-account",
     findAddress:"/find-address",
     graphql:"http://localhost:4000/graphql",

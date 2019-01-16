@@ -31,7 +31,6 @@ interface IProps {
     onSubmit: MutationFn;
     pickedAddress: boolean;
 }
-
 const AddPlacePresenter: React.SFC<IProps> = ({
     onInputChange,
     address,
@@ -62,12 +61,10 @@ const AddPlacePresenter: React.SFC<IProps> = ({
                     name={"address"}
                 />
                 <ExtendedLink to={routes.findAddress}>지도에서 찾기</ExtendedLink>
-                {pickedAddress && (
                     <Button 
                         onClick={null} 
                         value={loading ? "위치 추가 중" : "추가하기"} 
                     />
-                )}
             </Form>
         </Container>
     </React.Fragment>

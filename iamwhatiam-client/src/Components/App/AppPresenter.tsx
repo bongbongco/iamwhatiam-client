@@ -8,6 +8,7 @@ Switch
 } from "react-router-dom";
 import routes from "../../routes";
 import AddPlace from "../../Routes/AddPlace";
+import AddTopic from "../../Routes/AddTopic";
 import EditAccount from "../../Routes/EditAccount";
 import FindAddress from "../../Routes/FindAddress";
 import Havruta from "../../Routes/Havruta";
@@ -50,6 +51,7 @@ const LoggedInRoutes: React.SFC = () => (
 <Route path={routes.places} exact={true} component={Places} />
 <Route path={routes.addPlace} exact={true} component={AddPlace} />
 <Route path={routes.findAddress} exact={true} component={FindAddress} />
+<Route path={routes.addTopic} exact={true} component={AddTopic} />
 <Redirect from={"*"} to={"/"} />
 </Switch>
 )
