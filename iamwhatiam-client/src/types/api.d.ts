@@ -137,6 +137,36 @@ export interface updateProfileVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: getTopic
+// ====================================================
+
+export interface getTopic_GetTopic_topic {
+  __typename: "Topic";
+  id: number;
+  subject: string;
+  content: string;
+  isFav: boolean;
+}
+
+export interface getTopic_GetTopic {
+  __typename: "GetTopicResponse";
+  ok: boolean;
+  error: string | null;
+  topic: getTopic_GetTopic_topic | null;
+}
+
+export interface getTopic {
+  GetTopic: getTopic_GetTopic;
+}
+
+export interface getTopicVariables {
+  topicId: number;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: reportMovement
 // ====================================================
 

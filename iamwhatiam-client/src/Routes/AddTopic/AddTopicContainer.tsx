@@ -17,18 +17,22 @@ import { ADD_TOPIC } from "./AddTopicQueries";
 interface IState {
     subject: string;
     content: string;
+    value: string;
 }
 
-interface IProps extends RouteComponentProps<any> {}
+interface IProps extends RouteComponentProps<any> {
+}
 
 class AddTopicQuery extends Mutation<addTopic, addTopicVariables> {}
 
 class AddTopicContainer extends React.Component<IProps, IState> {
+
     constructor(props: IProps) {
         super(props);
         this.state = {
             content: "",
             subject: "",
+            value: ""
         };
     }
     public render() {
@@ -58,6 +62,7 @@ class AddTopicContainer extends React.Component<IProps, IState> {
                 {(addTopicFn, { loading }) => (
                     <AddTopicPresenter
                         onInputChange={this.onInputChange}
+                        handleValueChange={this.handleValueChange}
                         subject={subject}
                         content={content}
                         loading={loading}
@@ -68,7 +73,7 @@ class AddTopicContainer extends React.Component<IProps, IState> {
         );
     }
     public onInputChange: React.ChangeEventHandler<
-        HTMLInputElement
+        any
     > = async event => {
         const {
             target: { name, value }
@@ -76,6 +81,10 @@ class AddTopicContainer extends React.Component<IProps, IState> {
         this.setState({
             [name]: value
         } as any);
+    };
+
+    public handleValueChange = (value: string) => {
+        this.setState({value});
     };
 }
 

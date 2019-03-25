@@ -2,7 +2,7 @@ import React from "react";
 import { MutationFn } from "react-apollo";
 import Helmet  from "react-helmet";
 import { Link } from "react-router-dom";
-import Header from "../../Components/Header";
+import CustomHeader from "../../Components/CustomHeader";
 import Place from "../../Components/Place";
 import routes from "../../routes";
 import styled from "../../typed-components";
@@ -62,7 +62,7 @@ const SettingsPresenter: React.SFC<IProps> = ({
         <Helmet>
             <title>설정 | iamWhatiam</title>
         </Helmet>
-        <Header title={"계정 설정"} backTo={"/"} />
+        <CustomHeader title={"계정 설정"} backTo={"/"} />
         <Container>
             <GridLink to={routes.editAccount}>
                 {!userDataLoading &&

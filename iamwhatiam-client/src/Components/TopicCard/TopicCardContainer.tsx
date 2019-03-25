@@ -3,13 +3,14 @@ import { Mutation } from "react-apollo";
 import { toast } from 'react-toastify';
 import { GET_TOPICS } from "../../sharedQueries";
 import { editTopic, editTopicVariables, getTopics } from "../../types/api";
-import TopicPresenter from "./TopicPresenter";
+import TopicCardPresenter from "./TopicCardPresenter";
 import { EDIT_TOPIC } from "./TopicQueries";
 
 interface IProps {
     fav: boolean;
     subject: string;
     content: string;
+    key: number;
     id: number;
 }
 /*
@@ -19,7 +20,7 @@ interface IState {
 */
 class EditTopicMutation extends Mutation<editTopic, editTopicVariables> {}
 
-class TopicContainer extends React.Component<IProps> {
+class TopicCardContainer extends React.Component<IProps> {
     public state = {
         comment: ""
     };
@@ -32,7 +33,7 @@ class TopicContainer extends React.Component<IProps> {
                     content,
                     isFav: !fav,
                     subject,
-                    topicId: id
+                    topicId: id,
                 }}
                 update={(cache, {data}) => {
                     if (data) {
@@ -52,7 +53,8 @@ class TopicContainer extends React.Component<IProps> {
                 refetchQueries={[{ query: GET_TOPICS }]}
             >
                 {editTopicFn => (
-                    <TopicPresenter
+                    <TopicCardPresenter
+                        topicId={id}
                         onStarPress={editTopicFn}
                         fav={fav}
                         subject={subject}
@@ -64,4 +66,4 @@ class TopicContainer extends React.Component<IProps> {
     }
 }
 
-export default TopicContainer;
+export default TopicCardContainer;

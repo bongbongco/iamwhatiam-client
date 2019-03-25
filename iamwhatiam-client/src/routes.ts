@@ -1,8 +1,12 @@
 export default {
+    addCounseling:"/add-counseling",
+    addCounselor:"/add-counselor",
     addPlace:"/add-place",
     addTopic:"/add-topic",
     editAccount:"/edit-account",
     findAddress:"/find-address",
+    getCounselor:"/get-counselor",
+    getTopic:"/get-topic",
     graphql:"http://localhost:4000/graphql",
     havruta:"/havruta",
     home:"/",
@@ -12,7 +16,6 @@ export default {
     ride:"/ride",
     settings:"/settings",
     socialLogin:"/social-login",
-    topic:"/topic",
     trip:"/trip",
     verifyPhone:"/verify-phone",
 };

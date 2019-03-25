@@ -2,8 +2,8 @@ import React from "react";
 import { MutationFn } from "react-apollo";
 import Helmet from "react-helmet";
 import Button from "../../Components/Button";
+import CustomHeader from "../../Components/CustomHeader";
 import Form from "../../Components/Form";
-import Header from "../../Components/Header";
 import Input from "../../Components/Input";
 import PhotoInput from "../../Components/PhotoInput";
 import styled from "../../typed-components";
@@ -43,7 +43,7 @@ const EditAccountPresenter: React.SFC<IProps> = ({
         <Helmet>
             <title>사용자 정보 수정 | iamWhatiam</title>
         </Helmet>
-        <Header title={"사용자 정보 수정"} backTo={"/"} />
+        <CustomHeader title={"사용자 정보 수정"} backTo={"/"} />
         <ExtendedForm submitFn={onSubmit}>
             <PhotoInput
                 uploading={uploading}

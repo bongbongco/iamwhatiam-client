@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
-import Header from "../../Components/Header";
+import CustomHeader from "../../Components/CustomHeader";
 import Place from "../../Components/Place";
 import routes from "../../routes";
 import styled from "../../typed-components";
@@ -28,7 +28,7 @@ const PlacesPresenter: React.SFC<IProps> = ({
         <Helmet>
             <title>장소 목록 | iamWhatiam</title>
         </Helmet>
-        <Header title={"장소 목록"} backTo={"/"} />
+        <CustomHeader title={"장소 목록"} backTo={"/"} />
         <Container>
             {!loading &&
             places &&

@@ -1,26 +1,8 @@
 import React from "react";
 import styled from "../../typed-components";
-/*
+
 const Container = styled.input`
-    background-color: white;
-    border-radius: 5px;
-    -webkit-appearance: none;
-    z-index: 2;
-    width: 100%;
-    max-width: 600;
-    border: 0;
-    font-size: 16px;
-    padding: 15px 10px;
-    box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
-    margin: auto;
-    top: 10px;
-    left: 0;
-    right: 0;
-    height: auto; 
-`;
-*/
-const Container = styled.input`
-    max-width: 215px;
+    max-width: 400px;
     width: 100%;
     box-sizing: border-box;
     padding: 5px;
@@ -31,12 +13,10 @@ const Container = styled.input`
     font-weight: 300;
     margin-left: 60px;
     z-index: 2;
-    &::placeholder{
-        color: $dark-grey;
-    }
     &:focus{
         outline: none;
         background-color: white; 
+        box-shadow: 10px 10px 10px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
     }
 `;
 
@@ -58,7 +38,7 @@ const SearchBar: React.SFC<IProps> = ({
         onBlur={onBlur}
         onSubmit={onBlur}
         onChange={onChange}
-        placeholder={"🔎"}
+        placeholder={"검색하기"}
         name={name}
     />
 );

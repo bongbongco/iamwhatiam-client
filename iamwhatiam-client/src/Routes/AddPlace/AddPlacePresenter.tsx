@@ -3,8 +3,8 @@ import { MutationFn } from "react-apollo";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
 import Button from "../../Components/Button";
+import CustomHeader from "../../Components/CustomHeader";
 import Form from "../../Components/Form";
-import Header from "../../Components/Header";
 import Input from "../../Components/Input";
 import routes from '../../routes';
 import styled from "../../typed-components";
@@ -43,7 +43,7 @@ const AddPlacePresenter: React.SFC<IProps> = ({
         <Helmet>
             <title>장소 추가하기 | iamWhatiam</title>
         </Helmet>
-        <Header title={"장소 추가하기"} backTo={"/"} />
+        <CustomHeader title={"장소 추가하기"} backTo={"/"} />
         <Container>
             <Form submitFn={onSubmit}>
                 <ExtendedInput

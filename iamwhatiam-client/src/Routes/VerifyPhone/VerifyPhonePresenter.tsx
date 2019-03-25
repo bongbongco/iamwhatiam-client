@@ -2,8 +2,8 @@ import React from "react";
 import { MutationFn } from 'react-apollo';
 import Helmet from "react-helmet";
 import Button from "../../Components/Button";
+import CustomHeader from "../../Components/CustomHeader";
 import Form from "../../Components/Form";
-import Header from "../../Components/Header";
 import Input from "../../Components/Input";
 import routes from "../../routes";
 import styled from "../../typed-components";
@@ -35,7 +35,7 @@ const VerifyPhonePresenter: React.SFC<IProps> = ({
         <Helmet>
             <title>휴대전화 번호 인증 | iamWhatiam</title>
         </Helmet>
-        <Header backTo={routes.phoneLogin} title={"Verify Phone Number"} />
+        <CustomHeader backTo={routes.phoneLogin} title={"Verify Phone Number"} />
         <ExtendedForm
             submitFn={onSubmit}
         >

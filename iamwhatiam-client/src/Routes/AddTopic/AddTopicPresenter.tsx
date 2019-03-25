@@ -1,5 +1,7 @@
 import React from "react";
 import { MutationFn } from "react-apollo";
+import ReactMde from "react-mde";
+import Showdown from "showdown";
 // import { Link } from "react-router-dom";
 import Button from "../../Components/Button";
 import Form from "../../Components/Form";
@@ -52,6 +54,13 @@ const Content = styled.span`
 const ExtendedInput = styled(Input)`
     margin-bottom: 40px;
 `;
+
+const Converter = new Showdown.Converter({
+    simplifiedAutoLink: true,
+    strikethrough: true,
+    tables: true,
+    tasklists: true
+});
 /*
 const ExtendedLink = styled(Link)`
     text-decoration: underline;
@@ -64,11 +73,13 @@ interface IProps {
     content: string;
     loading: boolean;
     onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleValueChange: any;
     onSubmit: MutationFn;
 }
 
 const AddTopicPresenter: React.SFC<IProps> = ({
     onInputChange,
+    handleValueChange,
     onSubmit,
     subject,
     content,
@@ -91,6 +102,13 @@ const AddTopicPresenter: React.SFC<IProps> = ({
                 value={content}
                 name={"content"}
             />
+            <ReactMde
+          onChange={handleValueChange}
+          value={content}
+          generateMarkdownPreview={markdown =>
+            Promise.resolve(Converter.makeHtml(markdown))
+          }
+        />
             <Button 
                 onClick={null} 
                 value={loading ? "추가 중" : "추가하기"} 
